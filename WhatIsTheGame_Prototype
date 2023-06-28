@@ -205,7 +205,7 @@ void connectFourGame(string& player1, string& player2, int& score1, int& score2)
             	cout << "Congratulations!" << endl;
             	cout << "The winner is...\n";
             	std::this_thread::sleep_for(std::chrono::seconds(2));
-                cout << player1 << "!" << endl;
+                cout << player2 << "!" << endl;
                 score1 += 10;
                 score2 -= 1;
             }
