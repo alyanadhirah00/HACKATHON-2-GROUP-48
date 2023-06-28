@@ -28,32 +28,32 @@ void guessingGame(int range, Node*& currentNode) {
     while (!guessed) 
 	{
         cin >> guess;
-		if(guess>=1 && guess<=range)
+	if(guess>=1 && guess<=range)
+	{
+		if (guess == secretNumber) 
 		{
-			if (guess == secretNumber) 
-			{
-            	cout << "\nYou found the bomb!" << endl;
-            	std::this_thread::sleep_for(std::chrono::seconds(1));
-            	cout << "RUN FOR YOUR LIFE !!!" << endl;
-            	std::this_thread::sleep_for(std::chrono::seconds(2));
-            	cout << "(The room is destroyed by the BOMB)" << endl;
-            	guessed = true;
+            		cout << "\nYou found the bomb!" << endl;
+            		std::this_thread::sleep_for(std::chrono::seconds(1));
+            		cout << "RUN FOR YOUR LIFE !!!" << endl;
+            		std::this_thread::sleep_for(std::chrono::seconds(2));
+            		cout << "(The room is destroyed by the BOMB)" << endl;
+			cout << endl << "Move to another room!" << endl;
+            		std::this_thread::sleep_for(std::chrono::seconds(2));
+            		guessed = true;
         	} 
-			else if (guess < secretNumber) 
-			{
-            	cout << "Too low. Try again: ";
-        	} 
-			else 
-			{
-            	cout << "Too high. Try again: ";
-        	}	
+		else if (guess < secretNumber) 
+		{
+            		cout << "Too low. Try again: ";
 		}
-		
+		else 
+            	{	
+			cout << "Too high. Try again: ";
+		}
+	}
 		else
 		{
 			cout << "Invalid number. Please try again.";
 		}
-
     }
     
     cout << endl;
@@ -70,18 +70,21 @@ void guessingGame(int range, Node*& currentNode) {
 }
 
 //*********************************************************************
-
-
 // Connect Four Game
-bool isBoardFull(char board[ROWS][COLS]) {
-    for (int col = 0; col < COLS; col++) {
+//*********************************************************************
+
+bool isBoardFull(char board[ROWS][COLS]) 
+{
+    for (int col = 0; col < COLS; col++) 
+    {
         if (board[ROWS - 1][col] == ' ')
             return false;
     }
     return true;
 }
 
-bool isWinningMove(char board[ROWS][COLS], int row, int col, char player) {
+bool isWinningMove(char board[ROWS][COLS], int row, int col, char player) 
+{
     // Check horizontal
     int count = 0;
     for (int c = 0; c < COLS; c++) {
@@ -164,10 +167,12 @@ void connectFourGame(string& player1, string& player2, int& score1, int& score2)
 
         int col;
         if (player1Turn) {
-            cout << player1 << "'s turn (X): ";
+            cout << player1 << "'s turn (X)";
+	    cout << "\nSelect column to drop your piece (1-7): ";
             cin >> col;
         } else {
-            cout << player2 << "'s turn (O): ";
+            cout << player2 << "'s turn (O)";
+	    cout << "\nSelect column to drop your piece (1-7): ";
             cin >> col;
         }
 
@@ -227,16 +232,27 @@ struct Player {
     Player* next;
 };
 
-void storePlayerData(Player*& head, string name, int score) {
+void updatePlayerScore(Player*& head, const string& name, int score) {
+    Player* current = head;
+    while (current != nullptr) {
+        if (current->name == name) {
+            current->score += score;
+            return;
+        }
+        current = current->next;
+    }
+
+    // Player not found, create a new node
     Player* newPlayer = new Player;
     newPlayer->name = name;
     newPlayer->score = score;
     newPlayer->next = nullptr;
 
+    // Insert the new node at the end of the list
     if (head == nullptr) {
         head = newPlayer;
     } else {
-        Player* current = head;
+        current = head;
         while (current->next != nullptr) {
             current = current->next;
         }
@@ -244,14 +260,12 @@ void storePlayerData(Player*& head, string name, int score) {
     }
 }
 
-// Store Player Data in Text File
 void storePlayerDataInFile(Player* head) {
-    ofstream outputFile("player_data.txt");
-
+    ofstream outputFile("player_data.txt", ios::app);
     if (outputFile.is_open()) {
         Player* current = head;
         while (current != nullptr) {
-            outputFile << current->name << " " << current->score << endl;
+            outputFile << current->name << " = " << current->score << endl;
             current = current->next;
         }
         outputFile.close();
@@ -329,7 +343,7 @@ public:
 };
 
 int main() {
-	Stack stack;
+    Stack stack;
     int choice;
     
 		// Intro
@@ -376,39 +390,45 @@ int main() {
 				// start game
 				srand(time(0)); // Seed the random number generator
 	
-			    // Create the linked list	
-			    Node* node1 = new Node;
-			    node1->range = 10;
+			    	// Create the linked list	
+			   	Node* node1 = new Node;
+			   	node1->range = 10;
 	
-			    Node* node2 = new Node;
-			    node2->range = 50;
+			    	Node* node2 = new Node;
+			    	node2->range = 50;
 	
-	    		Node* node3 = new Node;
-	    		node3->range = 100;
+	    			Node* node3 = new Node;
+	    			node3->range = 100;
 	
-	    		node1->next = node2;
-	    		node2->next = node3;
-	    		node3->next = nullptr;
+	    			node1->next = node2;
+	    			node2->next = node3;
+	    			node3->next = nullptr;
+
+				//************************
+	    			// Play the guessing game
+				//************************
+
+	    			Node* currentNode = node1;
+	    			while (currentNode != nullptr) {
+	        			guessingGame(currentNode->range, currentNode);
+	        			std::this_thread::sleep_for(std::chrono::seconds(2));
+	    			}
 	
-	    		// Play the guessing game
-	    		Node* currentNode = node1;
-	    		while (currentNode != nullptr) {
-	        		guessingGame(currentNode->range, currentNode);
-	        		std::this_thread::sleep_for(std::chrono::seconds(2));
-	    		}
-	
-	    		// Connect Four Game
-	    		string player1, player2;
-	    		int score1 = 0, score2 = 0;
-	    		cout << "Loading......\n";
-	    		std::this_thread::sleep_for(std::chrono::seconds(2));
+				//************************
+	    			// Connect Four Game
+				//************************
+
+	    			string player1, player2;
+	    			int score1 = 0, score2 = 0;
+	    			cout << "Loading......\n";
+	    			std::this_thread::sleep_for(std::chrono::seconds(2));
 				cout << "Congratulations, You have reached the final destination.\n";
 				cout << "The answer now reveals......\n";
-				//cout << "Get a line of four to win the game!\n";
-				//cout << "Press enter to continue when you are ready.\n";
-				// allow player to press enter when ready.
+				
+				cout << "Press enter to continue when you are ready.\n";
 				cout << endl;
 				std::this_thread::sleep_for(std::chrono::seconds(2));
+				
 				cout << "The Real Game Begins......" << endl;
 				std::this_thread::sleep_for(std::chrono::seconds(1));
 				cout << "Have you heard of a game called Four-In-A-Row or Connect Four?" << endl;
@@ -423,19 +443,20 @@ int main() {
 				std::this_thread::sleep_for(std::chrono::seconds(1));
 				cout << "Good Luck!\n";	
 				cout << endl;
-	    		cout << "\nEnter Player 1 name: ";
-    			cin >> player1;
-    			cout << "Enter Player 2 name: ";
-    			cin >> player2;
+
+	    			cout << "\nEnter Player 1 name: ";
+    				cin >> player1;
+    				cout << "Enter Player 2 name: ";
+    				cin >> player2;
     			
-    			cout << "\nLoading......\n";
+    				cout << "\nLoading......\n";
 				std::this_thread::sleep_for(std::chrono::seconds(2));
 
-    			connectFourGame(player1, player2, score1, score2);
-    			std::this_thread::sleep_for(std::chrono::seconds(2));
-    			cout << "\n---------------------------------------\n";
+    				connectFourGame(player1, player2, score1, score2);
+    				std::this_thread::sleep_for(std::chrono::seconds(2));
+    				cout << "\n---------------------------------------\n";
 				cout << "*            Scoreboard:           *\n";
-				cout << "*     Player        Score          *\n";
+				cout << "*       Player        Score          *\n";
 				cout << "-----------------------------------------\n";
 				cout << "    " << player1 << "           " << score1 << endl;
 				cout << "    " << player2 << "           " << score2 << endl;
@@ -448,18 +469,18 @@ int main() {
 				cout << endl;
 
 
-	    		// Store player data in linked list
-    			Player* head = nullptr;
-    			storePlayerData(head, player1, score1);
-    			storePlayerData(head, player2, score2);
+	    			// Store player data in linked list
+    				Player* head = nullptr;
+    				updatePlayerScore(head, player1, score1);
+    				updatePlayerScore(head, player2, score2);
 
-    			// Store player data in text file
-    			storePlayerDataInFile(head);
+    				// Store player data in text file
+    				storePlayerDataInFile(head);
 
-    			// Clean up memory
-    			delete node3;
-    			delete node2;
-    			delete node1;
+    				// Clean up memory
+    				delete node3;
+    				delete node2;
+    				delete node1;
     		
 				break;
 			}
@@ -501,16 +522,16 @@ int main() {
 				// display Scoreboard, read from file
 				string filename = "player_data.txt";
 
-    			// Read and display the historical data from the file
-    			readPlayerDataFromFile(filename);
+    				// Read and display the historical data from the file
+    				readPlayerDataFromFile(filename);
 				break;
 			}
 		
 			case 4:
 			{
 				// Quit the program
-                cout << "\n\nLeaving so soon? \nRemember, the game will be here whenever you want to dive back in!\n" << endl;
-                return 0;
+                		cout << "\n\nLeaving so soon? \nRemember, the game will be here whenever you want to dive back in!\n" << endl;
+                		return 0;
 			}
 		 	
 			default:
@@ -519,21 +540,21 @@ int main() {
 		}
 	
 		cout << endl;
-    	while (!stack.isEmpty()) 
+    		while (!stack.isEmpty()) 
 		{
-    		cout << "Press '0' to return to the main menu: ";
-    		cin >> choice;
+    			cout << "Press '0' to return to the main menu: ";
+    			cin >> choice;
 
-    		if (choice == 0)
+    			if (choice == 0)
 			{
-    		    stack.pop(); // Remove the last choice from the stack
-    	    }
-    	    else
-            {
-            	cout << "\nInvalid input.\n";		
+    		    	stack.pop(); // Remove the last choice from the stack
+    	    		}
+    	    		else
+            		{
+            		cout << "\nInvalid input.\n";		
 			}
-    	}
-    	cout << endl;
+    		}
+    		cout << endl;
 	}
 	
     return 0;
