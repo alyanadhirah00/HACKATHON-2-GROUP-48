@@ -58,6 +58,7 @@ In this game, the linked list data structure plays a crucial role in managing th
 
 
 7. Winning State of the game in Final Destination (Connect Four)
+
 Diagonal Win
 
 ![Diagonal win](https://github.com/alyanadhirah00/HACKATHON-2-GROUP-48/assets/121533158/9d0262af-a34a-4fc2-b360-36ecfd603bf1)
@@ -76,7 +77,8 @@ Vertical Win
 
 8. Text file that stores historical data (Name and Scores of players of the previous game)
 
-<img width="423" alt="image" src="https://github.com/alyanadhirah00/HACKATHON-2-/assets/121533158/de0c55a2-6a93-4194-96bf-9df28da68a86">
+<img width="423" alt="image" src="https://github.com/alyanadhirah00/HACKATHON-2-GROUP-48/assets/121533158/011779c8-77fc-42c6-b5b7-2617c423e488">
+
 
 
 
