@@ -17,39 +17,6 @@ struct Node {
 };
 
 // Guessing Game Function
-
-//void guessingGame(int range, Node*& currentNode) {
-//    int secretNumber = rand() % range + 1; // randomNumber -> secretNumber
-//    int guess; 
-//    bool guessed = false;
-//	cout << "You are in the first room." << endl;
-//    cout << "Guess a number between 1 and " << range << ": ";
-//
-//    while (!guessed) {
-//        cin >> guess;
-//
-//        if (guess == secretNumber) {
-//            cout << "Congratulations! You found the bomb!" << endl;
-//            guessed = true;
-//        } else if (guess < secretNumber) {
-//            cout << "Too low. Try again: ";
-//        } else {
-//            cout << "Too high. Try again: ";
-//        }
-//    }
-//    
-//    cout << endl;
-//
-//    // Move to the next node
-//    Node* temp = currentNode;
-//    currentNode = currentNode->next;
-//    delete temp;
-//}
-
-
-//*********************************************************************
-// Modified guessing game:
-// TRY: players collect an item after each round
 void guessingGame(int range, Node*& currentNode) {
     int secretNumber = rand() % range + 1; // randomNumber -> secretNumber
     int guess; 
