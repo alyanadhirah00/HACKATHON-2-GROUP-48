@@ -91,4 +91,4 @@ Vertical Win
 
 ## LINK TO THE GAME DEMO VIDEO
 
-https://www.canva.com/design/DAFm0JZ4aGc/watch?utm_content=DAFm0JZ4aGc&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink
+https://youtu.be/nbeHiO-yMm4
