@@ -2,6 +2,20 @@
 ## GAME DESCRIPTION
 The game is a two-player collaborative adventure that challenges players to work together and pass three rooms by guessing numbers within specified ranges. Each room is represented by a node in a dynamic linked list. If the players guess the correct number, they trigger a bomb that will destroy the room and then move to the next room. Upon passing all the rooms, the players move on to the Final Stage called the Final Destination. In this stage,they play against each other in the classic Four-In-A-Row or also known as the Connect Four game. The player who wins in this Connect Four game is declared the winner of this game. The Connect Four game serves as the final decider of the winner in case both players complete the adventure.
 ## GAME FEATURES
+CHALLENGING GAMEPLAY:
+THIS GAME TEST THE PLAYERS' ABILITY TO GUESS NUMBERS WITHIN SPECIFIED RANGES. AS LEVEL GOES UP, THE RANGE BECOMES LARGER TO MAKE IT MORE CHALLENGING.FINALLY IN THE LAST PART, THE GAME BECOME MORE CHALLENGING WHERE THE PLAYERS HAVE TO PLAY CONNECT FOUR GAMES. 
+
+MULTIPLAYER MODE:
+IN ADDITION TO THE COLLABORATIVE MODE, THIS GAME OFFERS COMPETITIVE MULTIPLAYER MODE WHERE THE PLAYERS HAVE TO COMPETE AGAINST EACH OTHER IN THE FINAL PART OF THE GAME WHICH IS CONNECT FOUR.
+
+Winning Determination:
+The winner of the overall game is determined by the outcome of the Connect Four game.
+If the Connect Four game ends in a draw, the game is considered a draw.
+
+Player Interaction:
+The game requires two players to collaborate to pass levels and compete in Connect Four.
+Players take turns guessing numbers for each level.
+In the Connect Four game, players alternate turns to drop put their piece (X or O) onto the board.
 
 ## HOW TO PLAY THIS GAME
 In this game, there are three rooms that the players have to pass before the final game which is Connect Four. For each room, both players have to communicate and strategize to come up with a joint guess within the specified range. There is a bomb in each room, if the players guess correctly, they will trigger the bomb and the room will be destroyed so the players have to move to the next room.
