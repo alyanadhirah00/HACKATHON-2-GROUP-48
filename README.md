@@ -1,4 +1,4 @@
-# HACKATHON-2-
+# HACKATHON 2: WHAT IS THE GAME?
 ## GAME DESCRIPTION
 The game is a two-player collaborative adventure that challenges players to work together and pass three rooms by guessing numbers within specified ranges. Each room is represented by a node in a dynamic linked list. If the players guess the correct number, they trigger a bomb that will destroy the room and then move to the next room. Upon passing all the rooms, the players move on to the Final Stage called the Final Destination. In this stage,they play against each other in the classic Four-In-A-Row or also known as the Connect Four game. The player who wins in this Connect Four game is declared the winner of this game. The Connect Four game serves as the final decider of the winner in case both players complete the adventure.
 ## GAME FEATURES
