@@ -3,16 +3,16 @@
 The game is a two-player collaborative adventure that challenges players to work together and pass three rooms by guessing numbers within specified ranges. Each room is represented by a node in a dynamic linked list. If the players guess the correct number, they trigger a bomb that will destroy the room and then move to the next room. Upon passing all the rooms, the players move on to the Final Stage called the Final Destination. In this stage,they play against each other in the classic Four-In-A-Row or also known as the Connect Four game. The player who wins in this Connect Four game is declared the winner of this game. The Connect Four game serves as the final decider of the winner in case both players complete the adventure.
 ## GAME FEATURES
 CHALLENGING GAMEPLAY:
-THIS GAME TEST THE PLAYERS' ABILITY TO GUESS NUMBERS WITHIN SPECIFIED RANGES. AS LEVEL GOES UP, THE RANGE BECOMES LARGER TO MAKE IT MORE CHALLENGING.FINALLY IN THE LAST PART, THE GAME BECOME MORE CHALLENGING WHERE THE PLAYERS HAVE TO PLAY CONNECT FOUR GAMES. 
+This game test the players' ability to guess numbers within specified ranges. As the level goes up, the range becomes larger to make it more challenging. In the last part, the games becomes more challenging where the players have to play the Connect Four Game.
 
 MULTIPLAYER MODE:
-IN ADDITION TO THE COLLABORATIVE MODE, THIS GAME OFFERS COMPETITIVE MULTIPLAYER MODE WHERE THE PLAYERS HAVE TO COMPETE AGAINST EACH OTHER IN THE FINAL PART OF THE GAME WHICH IS CONNECT FOUR.
+In the collaborative mode, this game offers competitive mulitplayer mode where the players have to compete against each other n the final part of the game which is the Connect Four game.
 
-Winning Determination:
-The winner of the overall game is determined by the outcome of the Connect Four game.
+WINNING DETERMINATION:
+The winner of the overall game is determined by the Connect Four game.
 If the Connect Four game ends in a draw, the game is considered a draw.
 
-Player Interaction:
+PLAYER INTERACTION:
 The game requires two players to collaborate to pass levels and compete in Connect Four.
 Players take turns guessing numbers for each level.
 In the Connect Four game, players alternate turns to drop put their piece (X or O) onto the board.
@@ -26,10 +26,10 @@ In this game, there are three rooms that the players have to pass before the fin
 5.	They play Connect Four against each other, and the winner of this game determines the ultimate winner of this game.
 
 ## OBJECT-ORIENTED CONCEPTS USED TO DEVELOP THIS GAME
-In this game, we used three different class which is GamePlayer, GuessingGame and ConnectFour.
+In this game, there are three classes which is GamePlayer, GuessingGame and ConnectFour.
 
 Disclaimer:
-We have developed the classes but was unable to allow the classes to communicate properly. Please refer to the file named "WhatIsTheGame_Prototype" to play the game.
+We have developed the classes but were unable to allow the classes to communicate properly. Please refer to the file named "WhatIsTheGame_Prototype" to play the game.
 
 ## ROLE OF LINKED LISTS/ STACKS/QUEUES IN THIS GAME
 In this game, the linked list data structure plays a crucial role in managing the rooms and facilitating the progression of the players. The dynamic linked list is used to represent three rooms in the game. Each node in the linked list corresponds to a room and stores the necessary information for that room. The node contains the range of numbers for each room. As the players passes the rooms, nodes are deleted from the linked lists. The linked list data structure provides an efficient way to manage and organize the game's levels in a logical sequence. The linked list structure helps maintain the sequential order of the levels. The players can only move forward from one rooms to the next, as dictated by the linked list. The linked list also allows for easy tracking of the players' progress. By keeping track of the current level based on the active node in the linked list, the game can determine the players' current position in the adventure. The game considers all levels completed and the adventure finished when the linked list becomes empty. At this point, the players move on to the Connect Four finale.
