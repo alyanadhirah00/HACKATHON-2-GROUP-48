@@ -39,12 +39,13 @@ In this game, the linked list data structure plays a crucial role in managing th
    ![image](https://github.com/alyanadhirah00/HACKATHON-2-GROUP-48/assets/117891942/d9c1e4ee-5f3e-4e8e-9af6-36646695af1c)
 
 2. Choose option number 1
-   ![image](https://github.com/alyanadhirah00/HACKATHON-2-GROUP-48/assets/117891942/726d6929-e5ec-4e17-be4e-8840e1a4426f)
 
-3. Choose option number 2
+    ![image](https://github.com/alyanadhirah00/HACKATHON-2-GROUP-48/assets/117891942/726d6929-e5ec-4e17-be4e-8840e1a4426f)
+
+4. Choose option number 2
 ![image](https://github.com/alyanadhirah00/HACKATHON-2-GROUP-48/assets/117891942/80ee5395-cf8a-4e37-b3fd-41bed591034c)
 
-4. Choose option number 3
+5. Choose option number 3
    
 ![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/117891942/9d59181d-adf5-4f1d-98b9-5295294b6a4b)
 
