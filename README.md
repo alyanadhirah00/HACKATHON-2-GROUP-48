@@ -21,10 +21,18 @@ We have developed the classes but was unable to allow the classes to communicate
 In this game, the linked list data structure plays a crucial role in managing the rooms and facilitating the progression of the players. The dynamic linked list is used to represent three rooms in the game. Each node in the linked list corresponds to a room and stores the necessary information for that room. The node contains the range of numbers for each room. As the players passes the rooms, nodes are deleted from the linked lists. The linked list data structure provides an efficient way to manage and organize the game's levels in a logical sequence. The linked list structure helps maintain the sequential order of the levels. The players can only move forward from one rooms to the next, as dictated by the linked list. The linked list also allows for easy tracking of the players' progress. By keeping track of the current level based on the active node in the linked list, the game can determine the players' current position in the adventure. The game considers all levels completed and the adventure finished when the linked list becomes empty. At this point, the players move on to the Connect Four finale.
 
 ## SCREENSHOTS OF THE GAME 
-![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/117891942/f3dc546f-a25f-4bf7-9773-8a496f60a202)
 1. The main menu display of the program
+![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/117891942/f3dc546f-a25f-4bf7-9773-8a496f60a202)
+
+2. Choose option number 1
+   
+3. Choose option number 2
 ![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/117891942/e9ceb82c-2512-4e79-8743-e6aeb64bb17f)
-2. Choose option number 2
+
+4. Choose option number 3
+![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/117891942/9d59181d-adf5-4f1d-98b9-5295294b6a4b)
+
+5. Choose option number 4
 
 
 
