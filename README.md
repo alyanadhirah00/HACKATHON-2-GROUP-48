@@ -54,7 +54,8 @@ In this game, the linked list data structure plays a crucial role in managing th
 
 6. Input Validation feature in the Random Number Guessing Game
 
-<img width="281" alt="image" src="https://github.com/alyanadhirah00/HACKATHON-2-/assets/121533158/2f577b8a-98d9-4997-a0d8-ee82e56e6ccc">
+![image](https://github.com/alyanadhirah00/HACKATHON-2-GROUP-48/assets/121533158/39f546a7-6f4b-4ba1-b4d0-9096787f6ccf)
+
 
 7. Winning State of the game in Final Destination (Connect Four)
 Diagonal Win
