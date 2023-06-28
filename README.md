@@ -73,6 +73,12 @@ Vertical Win
 ![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/121533158/2dcbd32d-3db5-41e4-b352-ae89fa07bb01)
 
 
+8. Text file that stores historical data (Name and Scores of players of the previous game)
+
+<img width="423" alt="image" src="https://github.com/alyanadhirah00/HACKATHON-2-/assets/121533158/de0c55a2-6a93-4194-96bf-9df28da68a86">
+
+
+
 
 
 
