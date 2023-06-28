@@ -272,7 +272,10 @@ void readPlayerDataFromFile(const string& filename) {
         }
         inputFile.close();
     } else {
-        cout << "Unable to open file: " << filename << endl;
+    	cout << "Unable to open file: " << filename << endl;
+    	cout << "There is no data yet.\n";
+    	cout << "Play a game to get your name on the Scoreboard!\n";
+        
     }
 }
 //*********************************************************************
@@ -476,7 +479,9 @@ int main() {
 				std::this_thread::sleep_for(std::chrono::seconds(1));
 				cout << "Partner up with a friend and Play the random number guessing game to reach the final destination." << endl;
 				std::this_thread::sleep_for(std::chrono::seconds(1));
-				cout << "What is in the final destination? Go and look for it!";
+				cout << "What is in the final destination? Go and look for it!\n";
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+				cout << "Click 'Start Game' in the Main Menu when you are ready to embark on this UNKNOWN ADVENTURE!\n";
 				cout << endl;
 			
 				break;
