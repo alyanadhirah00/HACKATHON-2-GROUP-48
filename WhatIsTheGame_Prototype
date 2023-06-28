@@ -1,0 +1,568 @@
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+#include <fstream>
+#include <chrono>
+#include <thread>
+
+using namespace std;
+
+const int ROWS = 6;
+const int COLS = 7;
+
+// Linked List Node
+struct Node {
+    int range;
+    Node* next;
+};
+
+// Guessing Game Function
+
+//void guessingGame(int range, Node*& currentNode) {
+//    int secretNumber = rand() % range + 1; // randomNumber -> secretNumber
+//    int guess; 
+//    bool guessed = false;
+//	cout << "You are in the first room." << endl;
+//    cout << "Guess a number between 1 and " << range << ": ";
+//
+//    while (!guessed) {
+//        cin >> guess;
+//
+//        if (guess == secretNumber) {
+//            cout << "Congratulations! You found the bomb!" << endl;
+//            guessed = true;
+//        } else if (guess < secretNumber) {
+//            cout << "Too low. Try again: ";
+//        } else {
+//            cout << "Too high. Try again: ";
+//        }
+//    }
+//    
+//    cout << endl;
+//
+//    // Move to the next node
+//    Node* temp = currentNode;
+//    currentNode = currentNode->next;
+//    delete temp;
+//}
+
+
+//*********************************************************************
+// Modified guessing game:
+// TRY: players collect an item after each round
+void guessingGame(int range, Node*& currentNode) {
+    int secretNumber = rand() % range + 1; // randomNumber -> secretNumber
+    int guess; 
+    bool guessed = false;
+    cout << "Loading...\n";
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    cout << "Guess a number between 1 and " << range << ": ";
+
+    while (!guessed) 
+	{
+        cin >> guess;
+		if(guess>=1 && guess<=range)
+		{
+			if (guess == secretNumber) 
+			{
+            	cout << "\nYou found the bomb!" << endl;
+            	std::this_thread::sleep_for(std::chrono::seconds(1));
+            	cout << "RUN FOR YOUR LIFE !!!" << endl;
+            	std::this_thread::sleep_for(std::chrono::seconds(2));
+            	cout << "(The room is destroyed by the BOMB)" << endl;
+            	guessed = true;
+        	} 
+			else if (guess < secretNumber) 
+			{
+            	cout << "Too low. Try again: ";
+        	} 
+			else 
+			{
+            	cout << "Too high. Try again: ";
+        	}	
+		}
+		
+		else
+		{
+			cout << "Invalid number. Please try again.";
+		}
+
+    }
+    
+    cout << endl;
+
+    // Move to the next node or empty the linked list
+    if (currentNode->next != nullptr) {
+        Node* temp = currentNode;
+        currentNode = currentNode->next;
+        delete temp;
+    } else {
+        delete currentNode;
+        currentNode = nullptr;
+    }
+}
+
+//*********************************************************************
+
+
+// Connect Four Game
+bool isBoardFull(char board[ROWS][COLS]) {
+    for (int col = 0; col < COLS; col++) {
+        if (board[ROWS - 1][col] == ' ')
+            return false;
+    }
+    return true;
+}
+
+bool isWinningMove(char board[ROWS][COLS], int row, int col, char player) {
+    // Check horizontal
+    int count = 0;
+    for (int c = 0; c < COLS; c++) {
+        if (board[row][c] == player) {
+            count++;
+            if (count == 4)
+                return true;
+        } else {
+            count = 0;
+        }
+    }
+
+    // Check vertical
+    count = 0;
+    for (int r = 0; r < ROWS; r++) {
+        if (board[r][col] == player) {
+            count++;
+            if (count == 4)
+                return true;
+        } else {
+            count = 0;
+        }
+    }
+
+    // Check diagonal (top-left to bottom-right)
+    int startRow = row - min(row, col);
+    int startCol = col - min(row, col);
+    count = 0;
+    for (int r = startRow, c = startCol; r < ROWS && c < COLS; r++, c++) {
+        if (board[r][c] == player) {
+            count++;
+            if (count == 4)
+                return true;
+        } else {
+            count = 0;
+        }
+    }
+
+    // Check diagonal (top-right to bottom-left)
+    startRow = row - min(row, COLS - 1 - col);
+    startCol = col + min(row, COLS - 1 - col);
+    count = 0;
+    for (int r = startRow, c = startCol; r < ROWS && c >= 0; r++, c--) {
+        if (board[r][c] == player) {
+            count++;
+            if (count == 4)
+                return true;
+        } else {
+            count = 0;
+        }
+    }
+
+    return false;
+}
+
+void printBoard(const char board[ROWS][COLS]) {
+    cout << endl;
+    for (int r = 0; r < ROWS; r++) {
+        for (int c = 0; c < COLS; c++) {
+            cout << board[r][c] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
+void connectFourGame(string& player1, string& player2, int& score1, int& score2) {
+    char board[ROWS][COLS];
+    for (int r = 0; r < ROWS; r++) {
+        for (int c = 0; c < COLS; c++) {
+            board[r][c] = ' ';
+        }
+    }
+
+    bool player1Turn = true;
+    bool gameEnd = false;
+
+    while (!gameEnd) {
+        printBoard(board);
+
+        int col;
+        if (player1Turn) {
+            cout << player1 << "'s turn (X): ";
+            cin >> col;
+        } else {
+            cout << player2 << "'s turn (O): ";
+            cin >> col;
+        }
+
+        col--;
+
+        // Check if the selected column is valid
+        if (col < 0 || col >= COLS || board[0][col] != ' ') {
+            cout << "Invalid move! Try again." << endl;
+            continue;
+        }
+
+        // Find the first available row in the selected column
+        int row;
+        for (row = ROWS - 1; row >= 0; row--) {
+            if (board[row][col] == ' ')
+                break;
+        }
+
+        // Make the move
+        char player = player1Turn ? 'X' : 'O';
+        board[row][col] = player;
+        cout << endl; // to leave a blank line
+
+        // Check for a winning move
+        if (isWinningMove(board, row, col, player)) {
+            printBoard(board);
+            if (player1Turn) {
+            	cout << "Congratulations!" << endl;
+            	cout << "The winner is...\n";
+            	std::this_thread::sleep_for(std::chrono::seconds(2));
+                cout << player1 << "!" << endl;
+                score1 += 10;
+                score2 -= 1;
+            } else {
+            	cout << "Congratulations!" << endl;
+            	cout << "The winner is...\n";
+            	std::this_thread::sleep_for(std::chrono::seconds(2));
+                cout << player1 << "!" << endl;
+                score1 += 10;
+                score2 -= 1;
+            }
+            gameEnd = true;
+        } else if (isBoardFull(board)) {
+            printBoard(board);
+            cout << "It's a draw!" << endl;
+            gameEnd = true;
+        } else {
+            player1Turn = !player1Turn;
+        }
+    }
+}
+
+// Store Player Data in Linked List
+struct Player {
+    string name;
+    int score;
+    Player* next;
+};
+
+void storePlayerData(Player*& head, string name, int score) {
+    Player* newPlayer = new Player;
+    newPlayer->name = name;
+    newPlayer->score = score;
+    newPlayer->next = nullptr;
+
+    if (head == nullptr) {
+        head = newPlayer;
+    } else {
+        Player* current = head;
+        while (current->next != nullptr) {
+            current = current->next;
+        }
+        current->next = newPlayer;
+    }
+}
+
+// Store Player Data in Text File
+void storePlayerDataInFile(Player* head) {
+    ofstream outputFile("player_data.txt");
+
+    if (outputFile.is_open()) {
+        Player* current = head;
+        while (current != nullptr) {
+            outputFile << current->name << " " << current->score << endl;
+            current = current->next;
+        }
+        outputFile.close();
+        cout << "Player data saved to file." << endl;
+    } else {
+        cout << "Unable to open file for writing." << endl;
+    }
+}
+
+//*********************************************************************
+void readPlayerDataFromFile(const string& filename) {
+    ifstream inputFile(filename);
+
+    if (inputFile.is_open()) {
+        string line;
+        while (getline(inputFile, line)) {
+            cout << line << endl;
+        }
+        inputFile.close();
+    } else {
+        cout << "Unable to open file: " << filename << endl;
+    }
+}
+//*********************************************************************
+
+// class to return to the main menu
+const int MAX_SIZE = 100; // Maximum size of the stack
+
+class Stack {
+private:
+    int data[MAX_SIZE]; // Array to store the stack elements
+    int top; // Index of the top element
+
+public:
+    Stack() {
+        top = -1; // Initialize top to -1 to indicate an empty stack
+    }
+
+    bool isEmpty() {
+        return top == -1; // Stack is empty if top is -1
+    }
+
+    bool isFull() {
+        return top == MAX_SIZE - 1; // Stack is full if top is equal to the maximum index
+    }
+
+    void push(int value) {
+        if (isFull()) {
+            cout << "Stack overflow. Cannot push element." << endl;
+        } else {
+            top++;
+            data[top] = value; // Add the element to the top of the stack
+        }
+    }
+
+    void pop() {
+        if (isEmpty()) {
+            cout << "Stack underflow. Cannot pop element." << endl;
+        } else {
+            top--; // Decrement top to remove the topmost element
+        }
+    }
+
+    int topValue() {
+        if (isEmpty()) {
+            cout << "Stack is empty. No top element." << endl;
+            return -1;
+        } else {
+            return data[top]; // Return the topmost element
+        }
+    }
+};
+
+int main() {
+	Stack stack;
+    int choice;
+    
+		// Intro
+		cout << "-------------------------------------------------------\n";
+		cout << "*                                                     *\n";
+		cout << "*                  What Is The Game?                  *\n";
+		cout << "*                                                     *\n";
+		cout << "-------------------------------------------------------\n";
+
+		cout << "Welcome to the World of The Unknown." << endl;
+		cout << "You would know what is the game until you reach the end..." << endl;
+		cout << "(Press enter to continue......)";
+		cin.ignore();
+		
+		
+    while (true)
+    {
+    	// class object
+	
+		// Display game menu
+		cout << endl;
+		cout << "-------------------------------------------------------\n";
+		cout << "*                                                     *\n";
+		cout << "*                      Game Menu                      *\n";
+		cout << "*                                                     *\n";
+		cout << "-------------------------------------------------------\n";
+		cout << "1. Start Game" << endl; // lead to gameplay
+		cout << "2. Instructions" << endl; // display instructions
+		cout << "3. Scoreboard" << endl; // display scoreboard
+		cout << "4. Exit Game" << endl; // exit game
+		cout << endl;
+		cout << "Enter your choice (1-4): ";
+		cin >> choice;
+		cout << endl;
+
+
+		// Menu choice
+
+		switch (choice)
+		{
+			case 1:
+			{	
+				stack.push(choice);
+				// start game
+				srand(time(0)); // Seed the random number generator
+	
+			    // Create the linked list	
+			    Node* node1 = new Node;
+			    node1->range = 10;
+	
+			    Node* node2 = new Node;
+			    node2->range = 50;
+	
+	    		Node* node3 = new Node;
+	    		node3->range = 100;
+	
+	    		node1->next = node2;
+	    		node2->next = node3;
+	    		node3->next = nullptr;
+	
+	    		// Play the guessing game
+	    		Node* currentNode = node1;
+	    		while (currentNode != nullptr) {
+	        		guessingGame(currentNode->range, currentNode);
+	        		std::this_thread::sleep_for(std::chrono::seconds(2));
+	    		}
+	
+	    		// Connect Four Game
+	    		string player1, player2;
+	    		int score1 = 0, score2 = 0;
+	    		cout << "Loading......\n";
+	    		std::this_thread::sleep_for(std::chrono::seconds(2));
+				cout << "Congratulations, You have reached the final destination.\n";
+				cout << "The answer now reveals......\n";
+				//cout << "Get a line of four to win the game!\n";
+				//cout << "Press enter to continue when you are ready.\n";
+				// allow player to press enter when ready.
+				cout << endl;
+				std::this_thread::sleep_for(std::chrono::seconds(2));
+				cout << "The Real Game Begins......" << endl;
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+				cout << "Have you heard of a game called Four-In-A-Row or Connect Four?" << endl;
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+				cout << "If not, it is a game like tic-tac-toe.\n";
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+				cout << "With your imagination, drop your pieces in the\n";
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+				cout << "imaginary 6x7 board to form a line of four pieces\n";
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+				cout << "horizontally, vertically or diagonally to win!\n";
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+				cout << "Good Luck!\n";	
+				cout << endl;
+	    		cout << "\nEnter Player 1 name: ";
+    			cin >> player1;
+    			cout << "Enter Player 2 name: ";
+    			cin >> player2;
+    			
+    			cout << "\nLoading......\n";
+				std::this_thread::sleep_for(std::chrono::seconds(2));
+
+    			connectFourGame(player1, player2, score1, score2);
+    			std::this_thread::sleep_for(std::chrono::seconds(2));
+    			cout << "\n---------------------------------------\n";
+				cout << "*            Scoreboard:           *\n";
+				cout << "*     Player        Score          *\n";
+				cout << "-----------------------------------------\n";
+				cout << "    " << player1 << "           " << score1 << endl;
+				cout << "    " << player2 << "           " << score2 << endl;
+				cout << endl;
+				std::this_thread::sleep_for(std::chrono::seconds(2));
+				cout << "\n-------------------------------------------\n";
+				cout << "Congratulations for completing the game!\n";
+				cout << "See you again!" << endl;
+				cout << "-------------------------------------------\n";
+				cout << endl;
+
+
+	    		// Store player data in linked list
+    			Player* head = nullptr;
+    			storePlayerData(head, player1, score1);
+    			storePlayerData(head, player2, score2);
+
+    			// Store player data in text file
+    			storePlayerDataInFile(head);
+
+    			// Clean up memory
+    			delete node3;
+    			delete node2;
+    			delete node1;
+    		
+				break;
+			}
+			case 2:
+			{	
+				stack.push(choice);
+				// display Instructions
+				cout << endl;
+				cout << "Loading The Instructions...\n";
+				cout << "------------------------------\n";
+				std::this_thread::sleep_for(std::chrono::seconds(2));
+				cout << "Welcome to the World of Unknown." << endl;
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+				cout << "Walk into a world of unknown adventure." << endl;
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+				cout << "From friends to enemies......" << endl;
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+				cout << "Partner up with a friend and Play the random number guessing game to reach the final destination." << endl;
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+				cout << "What is in the final destination? Go and look for it!";
+				cout << endl;
+			
+				break;
+			}
+		
+			case 3:
+			{	
+				stack.push(choice);
+				cout << endl;
+				cout << "Loading The Scoreboard...\n";
+				std::this_thread::sleep_for(std::chrono::seconds(2));
+				
+				cout << "------------------------------\n";
+				cout << "*         Scoreboard         *\n";
+				cout << "*   Win: +10       Lose: -1  *\n";
+				cout << "------------------------------\n";
+				// display Scoreboard, read from file
+				string filename = "player_data.txt";
+
+    			// Read and display the historical data from the file
+    			readPlayerDataFromFile(filename);
+				break;
+			}
+		
+			case 4:
+			{
+				// Quit the program
+                cout << "\n\nLeaving so soon? \nRemember, the game will be here whenever you want to dive back in!\n" << endl;
+                return 0;
+			}
+		 	
+			default:
+				cout << "Invalid choice. Enter numbers 1 to 4 only.\n";
+			
+		}
+	
+		cout << endl;
+    	while (!stack.isEmpty()) 
+		{
+    		cout << "Press '0' to return to the main menu: ";
+    		cin >> choice;
+
+    		if (choice == 0)
+			{
+    		    stack.pop(); // Remove the last choice from the stack
+    	    }
+    	    else
+            {
+            	cout << "\nInvalid input.\n";		
+			}
+    	}
+    	cout << endl;
+	}
+	
+    return 0;
+}
