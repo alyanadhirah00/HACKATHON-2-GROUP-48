@@ -22,32 +22,40 @@ In this game, the linked list data structure plays a crucial role in managing th
 
 ## SCREENSHOTS OF THE GAME 
 1. The main menu display of the program
+   
 ![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/117891942/f3dc546f-a25f-4bf7-9773-8a496f60a202)
 
 2. Choose option number 1
+   
 <img width="212" alt="image" src="https://github.com/alyanadhirah00/HACKATHON-2-/assets/121533158/964dd6dd-a880-49f9-865c-7ddc122b3fcd">
 
-   
 3. Choose option number 2
+
 ![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/117891942/e9ceb82c-2512-4e79-8743-e6aeb64bb17f)
 
 4. Choose option number 3
+   
 ![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/117891942/9d59181d-adf5-4f1d-98b9-5295294b6a4b)
 
 5. Choose option number 4
+
 ![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/117891942/dd9063fa-db36-42e0-81c4-82583976d55c)
 
 6. Input Validation feature in the Random Number Guessing Game
+
 <img width="281" alt="image" src="https://github.com/alyanadhirah00/HACKATHON-2-/assets/121533158/2f577b8a-98d9-4997-a0d8-ee82e56e6ccc">
 
 7. Winning State of the game in Final Destination (Connect Four)
 Diagonal Win
+
 ![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/121533158/f3205d72-6bf9-4d75-b7eb-033368bd150d)
 
 Horizontal Win
+
 ![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/121533158/24dba6a0-9541-4965-aa5d-5bfb946d3c38)
 
 Vertical Win
+
 ![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/121533158/2dcbd32d-3db5-41e4-b352-ae89fa07bb01)
 
 
