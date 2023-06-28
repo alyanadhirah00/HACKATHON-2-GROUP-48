@@ -98,10 +98,14 @@ void ConnectFour :: connectFourGame(string& player1, string& player2, int& score
 
       int col;
       if (player1Turn) {
-          cout << player1 << "'s turn (X): ";
+          cout << player1 << "'s turn (X)";
+          cout << "\nSelect column to drop your piece (1-7): ";
+
           cin >> col;
       } else {
           cout << player2 << "'s turn (O): ";
+          cout << "\nSelect column to drop your piece (1-7): ";
+
           cin >> col;
       }
 
