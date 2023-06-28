@@ -2,21 +2,32 @@
 #include <fstream>
 using namespace std;
 
-void GamePlayer :: storePlayerData(Player*& head, string name, int score) {
-  Player* newPlayer = new Player;
-  newPlayer->name = name;
-  newPlayer->score = score;
-  newPlayer->next = nullptr;
+void GamePlayer :: updatePlayerScore(Player*& head, const string& name, int score) {
+    Player* current = head;
+    while (current != nullptr) {
+        if (current->name == name) {
+            current->score += score;
+            return;
+        }
+        current = current->next;
+    }
 
-  if (head == nullptr) {
-      head = newPlayer;
-  } else {
-      Player* current = head;
-      while (current->next != nullptr) {
-    	    current = current->next;
-    	}
-    	current->next = newPlayer;
-  }
+    // Player not found, create a new node
+    Player* newPlayer = new Player;
+    newPlayer->name = name;
+    newPlayer->score = score;
+    newPlayer->next = nullptr;
+
+    // Insert the new node at the end of the list
+    if (head == nullptr) {
+        head = newPlayer;
+    } else {
+        current = head;
+        while (current->next != nullptr) {
+            current = current->next;
+        }
+        current->next = newPlayer;
+    }
 }
 
 // Store Player Data in Text File
@@ -26,7 +37,7 @@ void GamePlayer :: storePlayerDataInFile(Player* head) {
     if (outputFile.is_open()) {
         Player* current = head;
         while (current != nullptr) {
-            outputFile << current->name << " " << current->score << endl;
+            outputFile << current->name << " = " << current->score << endl;
             current = current->next;
         }
         outputFile.close();
@@ -36,7 +47,7 @@ void GamePlayer :: storePlayerDataInFile(Player* head) {
     }
 }
 
-void GamePlayer :: readPlayerDataFromFile(const string& filename) {
+void readPlayerDataFromFile(const string& filename) {
     ifstream inputFile(filename);
 
     if (inputFile.is_open()) {
@@ -46,6 +57,9 @@ void GamePlayer :: readPlayerDataFromFile(const string& filename) {
         }
         inputFile.close();
     } else {
-        cout << "Unable to open file: " << filename << endl;
+    	cout << "Unable to open file: " << filename << endl;
+    	cout << "There is no data yet.\n";
+    	cout << "Play a game to get your name on the Scoreboard!\n";
+        
     }
 }
