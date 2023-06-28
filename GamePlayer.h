@@ -13,7 +13,7 @@ class GamePlayer
     };
 
   public:
-    void storePlayerData(Player*&head, string name, int score);
+    void updatePlayerScore(Player*& head, const string& name, int score);
     void storePlayerDataInFile(Player* head);
     void readPlayerDataFromFile(const string& filename);
 
