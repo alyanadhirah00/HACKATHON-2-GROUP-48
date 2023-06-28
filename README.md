@@ -22,7 +22,9 @@ In this game, the linked list data structure plays a crucial role in managing th
 
 ## SCREENSHOTS OF THE GAME 
 ![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/117891942/f3dc546f-a25f-4bf7-9773-8a496f60a202)
-
+1. The main menu display of the program
+![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/117891942/e9ceb82c-2512-4e79-8743-e6aeb64bb17f)
+2. Choose option number 2
 
 
 
