@@ -46,12 +46,11 @@ In this game, the linked list data structure plays a crucial role in managing th
 ![image](https://github.com/alyanadhirah00/HACKATHON-2-GROUP-48/assets/117891942/80ee5395-cf8a-4e37-b3fd-41bed591034c)
 
 5. Choose option number 3
-   
-![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/117891942/9d59181d-adf5-4f1d-98b9-5295294b6a4b)
+   ![Screenshot 2023-06-28 235901](https://github.com/alyanadhirah00/HACKATHON-2-GROUP-48/assets/117891942/a8eae52e-2c52-4895-adb1-6df2a1ea3544)
 
 5. Choose option number 4
+![Screenshot 2023-06-28 235935](https://github.com/alyanadhirah00/HACKATHON-2-GROUP-48/assets/117891942/a846b57c-8cb8-4c5a-b355-e443d5025b0e)
 
-![image](https://github.com/alyanadhirah00/HACKATHON-2-/assets/117891942/dd9063fa-db36-42e0-81c4-82583976d55c)
 
 6. Input Validation feature in the Random Number Guessing Game
 
